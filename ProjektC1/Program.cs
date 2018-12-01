@@ -6,6 +6,10 @@ using TestowaNamespace;
 using MojaBiblioteka2;
 using System.Linq;
 
+/// <summary>
+/// a tego też wczeńśniej nie było v.1
+/// </summary>
+
 
 namespace ProjektC1
 {
@@ -37,7 +41,7 @@ namespace ProjektC1
                 //ReadKey(); // czekaj aż coś się naciśnie na klawiaturze. 
             } while (powtórz == "t");
 
-
+            //tego wcześniej nie było. 
         }
 
         private static void DemoLiczbyPierwsze()
