@@ -10,6 +10,8 @@ using System.Linq;
 /// a tego też wczeńśniej nie było v.1
 /// </summary>
 
+/// robimy zmiany do gałęzi drugiej. 
+
 
 namespace ProjektC1
 {
