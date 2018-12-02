@@ -5,6 +5,7 @@ using static System.Console;
 using TestowaNamespace;
 using MojaBiblioteka2;
 using System.Linq;
+using System.IO;
 
 /// <summary>
 /// a tego też wczeńśniej nie było v.1
@@ -35,7 +36,10 @@ namespace ProjektC1
                 //DemoParametryOpcjonalne();
                 //DemoWartościReferencje();
                 //DemoTabele();
-                DemoLiczbyPierwsze();
+                //DemoLiczbyPierwsze();
+                //DemoTypyNullowalne();
+                DemoPracaPlikiTXT();
+
 
                 WriteLine("czy powtórzyć? t/n");
                 powtórz = Convert.ToString(Console.ReadLine());
@@ -44,6 +48,123 @@ namespace ProjektC1
             } while (powtórz == "t");
 
             //tego wcześniej nie było. 
+        }
+
+        private static void DemoPracaPlikiTXT()
+        {
+            /*
+             * string cośDoZapisuTxt;
+            FileStream fsZapis;
+            fsZapis = new FileStream(@"C:\Users\cieslo\Documents\visual studio 2017\Projects\ProjektC1\ProjektC1\klasa\pliki\dane.txt", FileMode.Create);  //create - tworzy nowy, createNew - sprawdza czy istnieje i wywala wyjątek który trzeba obsłużyć.
+            StreamWriter sw = new StreamWriter(fsZapis);
+           
+            WriteLine("Podaj swoje imię:");
+            string imię = ReadLine();
+            WriteLine("Podaj swoje nazwisko:");
+            string nazwisko = ReadLine();
+            cośDoZapisuTxt = imię + " " + nazwisko;
+            sw.WriteLine(cośDoZapisuTxt); //zapis do pliku
+            sw.Close(); //zamknięcie pliku
+            
+*/
+            //odczyt pliku
+            /*
+            string cośOdczytaneZpliku;
+            FileStream fsOdczyt;
+            fsOdczyt = new FileStream(@"C:\Users\cieslo\Documents\visual studio 2017\Projects\ProjektC1\ProjektC1\klasa\pliki\dane.txt", FileMode.Open);
+            StreamReader sr = new StreamReader(fsOdczyt);
+
+            //TODO - do dokończenia odczyt pliku i wyświetlenie promienia koła
+            while ((cośOdczytaneZpliku = sr.ReadLine()) != null)
+            {
+                int i=0;
+                if (i < 3)
+                    {
+                        PromieńKoła(float.TryParse(float cośOdczytaneZpliku, out float promień));
+                        WriteLine(cośOdczytaneZpliku);
+                        i++;
+                        
+                    }
+            }
+            sr.Close();
+            */
+
+            /*
+                        //ścieżka do pliku
+                        string ścieżka = @"C:\Users\cieslo\Documents\visual studio 2017\Projects\ProjektC1\ProjektC1\klasa\pliki\dane.txt";
+                        if (!File.Exists(ścieżka))
+                        {
+                            using (StreamWriter sw = File.CreateText(ścieżka))
+                            {
+                                WriteLine("Podaj swoje imię:");
+                                string imię = ReadLine();
+                                WriteLine("Podaj swoje nazwisko:");
+                                string nazwisko = ReadLine();
+                                string cośDoZapisuTxt = imię + " " + nazwisko;
+                                sw.WriteLine(cośDoZapisuTxt);
+                            }
+                        }
+                        else
+                        {
+                            using (StreamWriter sw = File.AppendText(ścieżka))
+                            {
+                                WriteLine("Podaj swoje imię:");
+                                string imię = ReadLine();
+                                WriteLine("Podaj swoje nazwisko:");
+                                string nazwisko = ReadLine();
+                                string cośDoZapisuTxt = imię + " " + nazwisko;
+                                sw.WriteLine(cośDoZapisuTxt+Environment.NewLine);
+                            }
+                        }
+                        */
+            string ścieżka = @"pliki\raven.txt";
+           /* 
+            string danePlik = File.ReadAllText(ścieżka);
+            WriteLine(danePlik);
+
+            string[] danePlikArr = File.ReadAllText(ścieżka);  //TODO - coś nie działa
+            foreach (var item in danePlikArr)
+            {
+                WriteLine(item);
+            }
+            int ileLiniiTekstu = File.ReadAllLines(ścieżka).Length;
+            WriteLine(ileLiniiTekstu);
+            */
+            //użycie Linq
+            var linieKruk = (from l in File.ReadAllLines(ścieżka)  // tu jest specyficzny zapis biblioteki Linq
+                             where l.Contains("Raven")
+                             select l).ToList();
+            foreach (var item in linieKruk)
+            {
+                WriteLine(item);
+            }
+
+            string ścieżkaWyniki = @"pliki\ravenWyniki.txt";
+            File.WriteAllLines(ścieżkaWyniki, linieKruk);
+
+        }
+
+        private static void PromieńKoła(bool v)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void DemoTypyNullowalne()
+        {
+            int? liczba = null;
+            int? liczbaInna = null;
+            bool? czyChceszIśćDoKina = null;
+            double? liczbaRzecz = new double?();
+
+            double wynik;
+            wynik = liczbaInna ?? 0;  // ?? - jeśli liczba inna to wpisz null
+            wynik = liczbaInna ?? liczba ?? 0;  // ?? - sprawdź czy liczba jeżeli nie to idź dalej, a na końcu wpisz 0 jeżeli wcześniej nie było liczby.
+            WriteLine(wynik.ToString());  //przyda się przy projektach bazodanowych! 
+
+            // na pliki binarne - binaryformater
+            
+
+
         }
 
         private static void DemoLiczbyPierwsze()

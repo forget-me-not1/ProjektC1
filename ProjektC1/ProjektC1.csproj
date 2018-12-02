@@ -9,4 +9,9 @@
     <ProjectReference Include="..\MojaBiblioteka2\MojaBiblioteka2.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="bin\Debug\netcoreapp2.1\pliki\" />
+    <Folder Include="klasa\pliki\" />
+  </ItemGroup>
+
 </Project>
