@@ -38,8 +38,8 @@ namespace ProjektC1
                 //DemoTabele();
                 //DemoLiczbyPierwsze();
                 //DemoTypyNullowalne();
-                DemoPracaPlikiTXT();
-
+                //DemoPracaPlikiTXT();
+                DemoSerializacjaXML();
 
                 WriteLine("czy powtórzyć? t/n");
                 powtórz = Convert.ToString(Console.ReadLine());
@@ -48,6 +48,25 @@ namespace ProjektC1
             } while (powtórz == "t");
 
             //tego wcześniej nie było. 
+        }
+
+        private static void DemoSerializacjaXML()
+        {
+            Kursant kursant = new Kursant();
+            kursant.Imię = "Piotr";
+            kursant.Nazwisko = "FrontEnd Specialist";
+
+            WriteLine(kursant.ToString());
+            WriteLine(kursant);
+
+            Kursant kursant2 = new Kursant("Karolina", "projektant BD");
+            
+
+            WriteLine(kursant2);
+
+            telewizory telewizor = new telewizory("2899,99", "55", "15");
+            WriteLine("\n"+telewizor);
+
         }
 
         private static void DemoPracaPlikiTXT()
